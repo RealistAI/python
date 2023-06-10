@@ -8,6 +8,8 @@ This is a repository of patterns, anti-patterns, and best practices for Python d
 
 
 ## Tips and Tricks
+
+### Psudo Code
  When you are starting a coding project, write out the logic in comments. Create psudo functions with only input and outputs and docstrings defined. This can help you avoid the sunk cost fallacy which can happen when you have spent hours writing out your code and you find you have coded yourself into a corner.
 
  For example, your psudo code may look like:
@@ -35,6 +37,7 @@ def main(csv_file: Path):
     Print that data
     """
 
+    # Ensure that the csv_file Path passed to us is a real file
     # Open the File
 
     # Pass the data to the extract bind variables function 
@@ -47,3 +50,37 @@ def main(csv_file: Path):
 ```
 
 I was able to create this in about 10 minutes. I haven't invested a huge amount of time into it, but I can already tell that this logic will work. I can now spend the time fleshing it out feeling fairly confident that I won't be heading for a wall.
+
+
+### Verify Inputs
+Python is a [duck-typed language](https://towardsdatascience.com/duck-typing-python-7aeac97e11f8#:~:text=Duck%20Typing%20is%20a%20term,care%20about%20whether%20it%20quacks.). That means that you never know what inputs your functions or methods  will be getting passed. It is a good practice to verify your inputs at the beginning of your function or method. Especially in cases where an input not being the right datatype may result in confusing errors.
+
+
+```python
+
+def map_datasets(table_reference: str, dataset_map: dict) -> str:
+    """
+    Given a table_reference like 'dataset.table' map the dataset (the first
+    element) to the correct dataset using the provided map.
+    """
+
+    # Validate inputs
+    assert isinstance(table_reference, str), "table_reference must be of type"\
+        f" str. You passed in a {type(table_reference)}."
+
+    assert isinstance(dataset_map, dict), "dataset_map must be of type dict. "\
+        f"You passed in a {type(dataset_map)}."
+
+    # Extract the dataset from the table reference
+    split_table_reference = table_reference.split('.')
+
+    assert len(split_table_reference) == 2, "Malformed table reference. The "\
+        "table reference should contain a dataset and table name seperated by"\
+        f" a period. E.g 'my_dataset.my_table'. You provided "\
+        "'{table_reference}'."
+
+
+    # Do stuff assuming that your inputs are correct
+```
+
+This will give the user of your method clear directions if they pass in something that you do not expect. It will also allow you to code with verified assumptions about the inputs to your method or function
