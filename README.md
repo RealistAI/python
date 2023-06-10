@@ -3,7 +3,7 @@
 This is a repository of patterns, anti-patterns, and best practices for Python development.
 
 ## Basic Tenants
- - Simplicity over complexity - Make your programs as simple as possible. Avoid creaiting structure for the sake of structure. 
+ - Simplicity over complexity - Make your programs as simple as possible. Avoid creating structure for the sake of structure. 
  - Explicit over implicit - write your code for the reader. Make it easy to understand.
 
 
