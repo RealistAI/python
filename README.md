@@ -5,6 +5,7 @@ This is a repository of patterns, anti-patterns, and best practices for Python d
 ## Basic Tenants
  - Simplicity over complexity - Make your programs as simple as possible. Avoid creating structure for the sake of structure. 
  - Explicit over implicit - write your code for the reader. Make it easy to understand.
+ - Comment often - Add comments that explain what/why you are doing something. You can gennerally assume that the reader can understand code, but if you are doing something more complex, it is good practice to clearly document what you are doing.
 
 
 ## Tips and Tricks
